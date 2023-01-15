@@ -1,8 +1,12 @@
 package net.grant.grantfirstmod;
 
 import com.mojang.logging.LogUtils;
+import net.grant.grantfirstmod.item.ModCreativeModeTab;
+import net.grant.grantfirstmod.item.ModItems;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -22,13 +26,25 @@ public class GrantFirstMod
     public GrantFirstMod()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+        ModItems.register(modEventBus);
+
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
+        modEventBus.addListener(this::addCreative);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         // Some common setup code
 
+    }
+    private void addCreative(CreativeModeTabEvent.BuildContents event) {
+        if(event.getTab() == ModCreativeModeTab.GRANTS_ITEMS) {
+            event.accept(ModItems.KINGSWORD);
+        }
+        if(event.getTab() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ModItems.KINGSWORD);
+        }
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
