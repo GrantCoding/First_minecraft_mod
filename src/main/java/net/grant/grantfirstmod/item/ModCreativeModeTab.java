@@ -16,6 +16,7 @@ public class ModCreativeModeTab {
     @SubscribeEvent
     public static void registerCreativeModeTabs(CreativeModeTabEvent.Register event) {
         GRANTS_ITEMS = event.registerCreativeModeTab(new ResourceLocation(GrantFirstMod.MOD_ID, "grants_items"),
-                builder -> builder.icon(() -> new ItemStack(ModItems.KINGSWORD.get())).title(Component.literal("Grants Items")).build());
+                builder ->
+                        builder.icon(() -> new ItemStack(ModItems.KINGSWORD.get())).title(Component.literal("Grants Items")).build());
     }
 }
