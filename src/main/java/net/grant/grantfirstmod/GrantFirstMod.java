@@ -1,6 +1,7 @@
 package net.grant.grantfirstmod;
 
 import com.mojang.logging.LogUtils;
+import net.grant.grantfirstmod.block.ModBlocks;
 import net.grant.grantfirstmod.item.ModCreativeModeTab;
 import net.grant.grantfirstmod.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -28,6 +29,7 @@ public class GrantFirstMod
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
