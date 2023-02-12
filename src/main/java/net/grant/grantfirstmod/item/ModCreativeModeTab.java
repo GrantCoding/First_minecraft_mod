@@ -18,5 +18,6 @@ public class ModCreativeModeTab {
         GRANTS_ITEMS = event.registerCreativeModeTab(new ResourceLocation(GrantFirstMod.MOD_ID, "grants_items"),
                 builder ->
                         builder.icon(() -> new ItemStack(ModItems.KINGSWORD.get())).title(Component.literal("Grants Items")).build());
+
     }
 }

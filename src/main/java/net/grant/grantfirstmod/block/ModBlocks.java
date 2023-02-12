@@ -1,8 +1,10 @@
 package net.grant.grantfirstmod.block;
 
 import net.grant.grantfirstmod.GrantFirstMod;
+import net.grant.grantfirstmod.item.ModCreativeModeTab;
 import net.grant.grantfirstmod.item.ModItems;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -20,18 +22,18 @@ public class ModBlocks {
 
 
     public static final RegistryObject<Block> SUN_BLOCK = registerBlock("sun_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(6f).requiresCorrectToolForDrops()));
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(6f).requiresCorrectToolForDrops()), ModCreativeModeTab.GRANTS_ITEMS);
 
 
-    private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block){
+    private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
         return toReturn;
     }
 
-
-    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block){
-        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block) {
+        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(),
+                new Item.Properties()));
     }
 
     public static void register(IEventBus eventBus) {
