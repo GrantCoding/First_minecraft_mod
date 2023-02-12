@@ -41,12 +41,12 @@ public class GrantFirstMod
 
     }
     private void addCreative(CreativeModeTabEvent.BuildContents event) {
+        //Extra tab entry for items in creative mode
         if(event.getTab() == ModCreativeModeTab.GRANTS_ITEMS) {
             event.accept(ModItems.KINGSWORD);
+            event.accept(ModItems.SUNBLOCK);
         }
-        if(event.getTab() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.KINGSWORD);
-        }
+
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
